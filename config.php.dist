@@ -1,0 +1,8 @@
+<?php
+
+define("DEV_MODE", (bool)"%DEV_MODE?0%");
+
+define("GITDB_HOST", "%GITDB_HOST%");
+define("CERT_REQ_SCOPE", "%CERT_REQ_SCOPE?certs%");
+define("CERT_STORE_SCOPE", "%CERT_STORE_SCOPE?certs%");
+define("ADMIN_EMAIL", "%ADMIN_EMAIL%");
