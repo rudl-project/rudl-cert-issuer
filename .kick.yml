@@ -3,7 +3,7 @@
 version: 1
 from: "nfra/kickstart-flavor-php:unstable"
 
-packages: [php8.0-curl, php8.0-http, php8.0-raphf, php8.0-mbstring]
+packages: [php8.0-curl, php8.0-http, php8.0-raphf, php8.0-mbstring, certbot]
 
 config_file:
   template: "config.php.dist"
