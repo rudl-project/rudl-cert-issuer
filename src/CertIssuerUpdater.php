@@ -43,9 +43,10 @@ class CertIssuerUpdater
         $manager = new CertManager($certReqObj, $stateObj, "/opt/www");
         while (($cert = $manager->getCertReqToIssue()) !== null) {
             echo "Issuing cert '$cert->name'...\n";
-            if ( ! isset($stateObj->state[$cert->name]))
-                $stateObj->state[$cert->name] = new T_CertState();
-            $state = $stateObj->state[$cert->name];
+            $state = $stateObj->getStateByName($cert->name);
+            if ($state === null) {
+                $stateObj->state[] = $state = new T_CertState($cert->name);
+            }
 
             $state->last_issued_date = time();
             $this->gitDb->writeObjects(SSL_CERT_SCOPE, new T_ObjectList([
@@ -67,7 +68,7 @@ class CertIssuerUpdater
             $state->last_issued_date = date("Y-m-d H:i:s", $certData->issued_at);
 
             $this->gitDb->writeObjects(SSL_CERT_SCOPE, new T_ObjectList([
-                (new T_Object(CERT_STATE_OBJECT))->dehydrate($state),
+                (new T_Object(CERT_STATE_OBJECT))->dehydrate($stateObj),
                 new T_Object($cert->name, $certData->getPemFullcain(), true)
             ]));
             echo "Successfully issued.\n";

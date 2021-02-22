@@ -19,6 +19,9 @@ class CertManager
     // ReIssue Certificate 1 day after failure
     const ONFAIL_REISSUE = 86400;
 
+    // ReIssue 1 day for changes
+    const ISSUE_GRACE_PERIOD = 86400;
+
     const CHECK_HOST_PATH = "/.well-known/acme-challenge/";
 
     public function __construct (
@@ -73,12 +76,17 @@ class CertManager
         foreach ($this->certRequests->certs as $cert) {
             if ($cert->autoissue === false)
                 continue;
-            if ( ! isset ($this->certStateObj->state[$cert->name])) {
+
+            $state = $this->certStateObj->getStateByName($cert->name);
+            if ($state === null) {
                 return $cert;
             }
-            $state = $this->certStateObj->state[$cert->name];
 
-            if ($state->last_error_ts < $currentTs - self::ONFAIL_REISSUE) {
+            if ($state->last_issued_date > $currentTs - self::ISSUE_GRACE_PERIOD) {
+                continue;
+            }
+
+            if ($state->last_error_ts > $currentTs - self::ONFAIL_REISSUE) {
                 continue;
             }
 

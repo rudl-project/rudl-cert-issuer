@@ -1,5 +1,6 @@
 FROM nfra/kickstart-flavor-php:unstable
-ENV DEV_CONTAINER_NAME="your-project-name"
+ENV DEV_CONTAINER_NAME="rudl-cert-issuer"
+ENV DEV_MODE="0"
 
 ADD / /opt
 RUN ["bash", "-c",  "chown -R user /opt"]
