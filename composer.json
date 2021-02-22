@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=8.0",
+        "ext-openssl": "*",
         "rudl/gitdb-lib": "*",
         "phore/filesystem": "dev-master",
         "phore/hydrator": "*",
