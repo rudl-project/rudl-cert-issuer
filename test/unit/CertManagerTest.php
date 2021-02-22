@@ -26,9 +26,7 @@ class CertManagerTest extends TestCase
 
         $certManager = new CertManager($certRequestObj, $stateObj, "/opt/www");
 
-
         $this->assertEquals(["localhost"], $certManager->getConnectedHosts($cert));
-
     }
 
 }

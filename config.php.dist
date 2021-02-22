@@ -2,7 +2,15 @@
 
 define("DEV_MODE", (bool)"%DEV_MODE?0%");
 
-define("GITDB_HOST", "%GITDB_HOST%");
-define("CERT_REQ_SCOPE", "%CERT_REQ_SCOPE?certs%");
-define("CERT_STORE_SCOPE", "%CERT_STORE_SCOPE?certs%");
-define("ADMIN_EMAIL", "%ADMIN_EMAIL%");
+define("RUDL_GITDB_URL", "%RUDL_GITDB_URL%");
+define("RUDL_GITDB_CLIENT_ID", "%RUDL_GITDB_CLIENT_ID%");
+define("RUDL_GITDB_CLIENT_SECRET", "%RUDL_GITDB_CLIENT_SECRET%");
+define("TOS_EMAIL", "%TOS_EMAIL%");
+
+define("SSL_CERT_SCOPE", "%SSL_CERT_SCOPE?ssl_certs%");
+define("SSL_CERT_REQ_SCOPE", "%SSL_CERT_REQ_SCOPE?ssl_cert_req%");
+define("CERT_REQ_OBJECT", "%CERT_REQ_OBJECT?issuer.conf.yml%");
+define("CERT_STATE_OBJECT", "%CERT_STATE_OBJECT?certs.state.json%");
+
+
+

@@ -17,5 +17,5 @@ command:
     - "/opt/vendor/bin/ptest"
 
   run:
-    - "curl http://localhost/hooks/repo"
+    - "php -f bin/cert-issuer.php"
 

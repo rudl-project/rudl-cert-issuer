@@ -1,0 +1,14 @@
+version: "3"
+services:
+  gitdb:
+    image: rudl/gitdb:unstable
+    networks:
+      - rudl-cert-issuer
+    environment:
+      GIT_REPO_URL: https://github.com/rudl-project/rudl-config-template.git
+      RUDL_VAULT_SECRET: testtest
+      DEV_SKIP_PUSH: 1
+
+networks:
+  rudl-cert-issuer:
+    external: true

@@ -65,7 +65,7 @@ class CertManager
     }
 
 
-    public function getCertReqToIssue(int $currentTs = null)
+    public function getCertReqToIssue(int $currentTs = null) : ?T_Cert
     {
         if ($currentTs === null)
             $currentTs = time();
@@ -93,6 +93,23 @@ class CertManager
                 return $cert;
             }
         }
+        return null;
+    }
+
+
+    public function issueTestCert(T_Cert $cert, LetsEncryptRunner $letsEncryptRunner) : Cert
+    {
+        return $letsEncryptRunner->acquireTestCert($cert->common_names);
+    }
+
+    public function issueCert(T_Cert $cert, LetsEncryptRunner $letsEncryptRunner) : Cert
+    {
+        $cns = $this->getConnectedHosts($cert);
+        $certData = $letsEncryptRunner->acquireCert($cns, $errors);
+
+        return $certData;
+
+
     }
 
 
