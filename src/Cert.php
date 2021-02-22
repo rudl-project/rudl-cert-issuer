@@ -7,7 +7,6 @@ namespace Rudl\CertIssuer;
 class Cert
 {
 
-
     public $cds = [];
     public $issued_at;
     public $cert_serialNumber;
