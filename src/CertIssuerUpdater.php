@@ -56,7 +56,7 @@ class CertIssuerUpdater
             if (DEV_MODE) {
                 $certData = $manager->issueTestCert($cert, new LetsEncryptRunner("/opt/www", TOS_EMAIL));
             } else {
-                $certData = $manager->issueCert($cert, new LetsEncryptRunner("/opt/www", TOS_EMAIL));
+                $certData = $manager->issueCert($cert, new LetsEncryptRunner("/opt/www", TOS_EMAIL), $errors);
             }
 
             $state->common_names = $certData->cds;

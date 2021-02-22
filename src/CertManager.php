@@ -110,9 +110,10 @@ class CertManager
         return $letsEncryptRunner->acquireTestCert($cert->common_names);
     }
 
-    public function issueCert(T_Cert $cert, LetsEncryptRunner $letsEncryptRunner) : Cert
+    public function issueCert(T_Cert $cert, LetsEncryptRunner $letsEncryptRunner, &$errors = []) : Cert
     {
         $cns = $this->getConnectedHosts($cert);
+        $errors = [];
         $certData = $letsEncryptRunner->acquireCert($cns, $errors);
 
         return $certData;
