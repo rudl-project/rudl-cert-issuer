@@ -23,9 +23,7 @@ try {
     throw $e;
 }
 
-
 $runner = new UpdateRunner($gitDb);
-
 $runner->run(new CertIssuerUpdater($gitDb));
 
 
