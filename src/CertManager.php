@@ -74,8 +74,11 @@ class CertManager
             $currentTs = time();
 
         foreach ($this->certRequests->certs as $cert) {
-            if ($cert->autoissue === false)
+            echo "\nScanning cert $cert->name";
+            if ($cert->autoissue === false) {
+                echo "[Skip - autoissue disabled]";
                 continue;
+            }
 
             $state = $this->certStateObj->getStateByName($cert->name);
             if ($state === null) {
@@ -83,10 +86,12 @@ class CertManager
             }
 
             if ($state->last_issued_date > $currentTs - self::ISSUE_GRACE_PERIOD) {
+                echo "[Skip - not due 1]";
                 continue;
             }
 
             if ($state->last_error_ts > $currentTs - self::ONFAIL_REISSUE) {
+                echo "[Skip - not due 2]";
                 continue;
             }
 
@@ -100,6 +105,7 @@ class CertManager
             if ($state->cert_validTo < $currentTs - self::REISSUE_BEFORE) {
                 return $cert;
             }
+            echo "[Skip - not due 3]";
         }
         return null;
     }
