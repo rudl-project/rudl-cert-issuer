@@ -24,6 +24,7 @@ try {
 }
 
 $runner = new UpdateRunner($gitDb);
-$runner->run(new CertIssuerUpdater($gitDb));
+// Try to reissue all 100 runs
+$runner->run(new CertIssuerUpdater($gitDb), 100);
 
 
