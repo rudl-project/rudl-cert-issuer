@@ -85,7 +85,7 @@ class CertManager
                 return $cert;
             }
 
-            if ($state->last_issued_date > $currentTs - self::ISSUE_GRACE_PERIOD) {
+            if (strtotime($state->last_issued_date) > $currentTs - self::ISSUE_GRACE_PERIOD) {
                 echo "[Skip - not due 1]";
                 continue;
             }
