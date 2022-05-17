@@ -102,7 +102,7 @@ class CertManager
                 return $cert;
             }
 
-            if ($state->cert_validTo < $currentTs - self::REISSUE_BEFORE) {
+            if ($state->cert_validTo < $currentTs + self::REISSUE_BEFORE) {
                 return $cert;
             }
             echo "[Skip - not due 3]";
