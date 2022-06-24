@@ -1,4 +1,4 @@
-FROM nfra/kickstart-flavor-php:unstable
+FROM ghcr.io/nfra-project/kickstart-flavor-php:8.1
 ENV DEV_CONTAINER_NAME="rudl-cert-issuer"
 ENV DEV_MODE="0"
 
