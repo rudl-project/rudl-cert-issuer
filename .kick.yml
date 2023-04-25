@@ -18,3 +18,4 @@ command:
 
   run:
     - "php -f bin/cert-issuer.php"
+
