@@ -15,9 +15,9 @@
         "php": ">=8.0",
         "ext-openssl": "*",
         "rudl/gitdb-lib": "*",
-        "phore/filesystem": "dev-master",
+        "phore/filesystem": "*",
         "phore/hydrator": "*",
-        "phore/letsencrypt": "dev-master"
+        "phore/letsencrypt": "*"
     },
 
     "require-dev": {
